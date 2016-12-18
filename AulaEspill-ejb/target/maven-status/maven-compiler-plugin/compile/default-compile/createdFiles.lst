@@ -1,0 +1,6 @@
+com\aula\service\ProductoService.class
+com\aula\domain\Producto.class
+com\aula\service\AlumnoService.class
+com\aula\service\AlumnoServiceLocal.class
+com\aula\domain\Alumno.class
+com\aula\service\ProductoServiceLocal.class
