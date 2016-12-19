@@ -5,6 +5,7 @@
  */
 package com.aula.service;
 
+import java.util.ArrayList;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +14,9 @@ import javax.ejb.Local;
  */
 @Local
 public interface ProductoServiceLocal {
+
+    ArrayList listaProductos();
+
+  
     
 }

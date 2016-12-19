@@ -23,11 +23,13 @@ public class Producto implements Serializable {
     private String idProd;
     private String nombre;    
     private String descripcion;
+    private String foto;
     private Double precio;
 
-    public Producto(String idProd, String nombre, String descripcion, Double precio) {
+    public Producto(String idProd, String nombre, String descripcion, String foto, Double precio) {
         this.idProd = idProd;
         this.nombre = nombre;
+        this.foto= foto;
         this.descripcion = descripcion;
         this.precio = precio;
     }
@@ -57,6 +59,14 @@ public class Producto implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
     public Double getPrecio() {
@@ -91,9 +101,10 @@ public class Producto implements Serializable {
 
     @Override
     public String toString() {
-        return "Producto{" + "id=" + idProd + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + precio + '}';
+        return "Producto{" + "idProd=" + idProd + ", nombre=" + nombre + ", descripcion=" + descripcion + ", foto=" + foto + ", precio=" + precio + '}';
     }
-    
+
+   
     
     
 }

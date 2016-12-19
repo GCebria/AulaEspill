@@ -6,6 +6,10 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+<%@page import="com.aula.domain.Producto"%>
+<%@page import="java.util.ArrayList"%>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -28,10 +32,10 @@
 
         <!-- Plugin CSS -->
         <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
-
+        
         <!-- Theme CSS -->
         <link href="css/creative.min.css" rel="stylesheet">
-
+        <link href="css/login.css" rel="stylesheet">   
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -57,7 +61,8 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="login.jsp">Login</a>
+                            <a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+
                         </li>
                         <li>
                             <a class="page-scroll" href="#about">About</a>
@@ -77,6 +82,29 @@
             </div>
             <!-- /.container-fluid -->
         </nav>
+
+        <!--Login-->
+
+        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="loginmodal-container">
+                    <h1>Login to Your Account</h1><br>
+                    <form>
+                        <input type="text" name="user" placeholder="Username">
+                        <input type="password" name="pass" placeholder="Password">
+                        <input type="submit" name="login" class="btn btn-primary btn-xl" value="Login">
+                    </form>
+
+                    <div class="login-help">
+                        <a href="LoginServlet">Register</a> - <a href="CrearAlumnoServlet">Forgot Password</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+
         <header>
             <div class="header-content">
                 <div class="header-content-inner">
@@ -143,17 +171,19 @@
                 </div>
             </div>
         </section>
-
         <section class="no-padding" id="portfolio">
             <div class="container-fluid">
                 <div class="row no-gutter popup-gallery">
+                    <% ArrayList<Producto> productos = (ArrayList) session.getAttribute("listaProductos");
+            for (Producto p : productos){%>
+
                     <div class="col-lg-4 col-sm-6">
-                        <a href="img/portfolio/fullsize/1.jpg" class="portfolio-box">
-                            <img src="img/portfolio/thumbnails/1.jpg" class="img-responsive" alt="">
+                        <a href="<%=p.getFoto()%>" class="portfolio-box">
+                            <img src="<%=p.getFoto()%>" class="img-responsive" alt="">
                             <div class="portfolio-box-caption">
                                 <div class="portfolio-box-caption-content">
                                     <div class="project-category text-faded">
-                                        Category
+                                        <%=p.getNombre()%>
                                     </div>
                                     <div class="project-name">
                                         Project Name
@@ -162,81 +192,10 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a href="img/portfolio/fullsize/2.jpg" class="portfolio-box">
-                            <img src="img/portfolio/thumbnails/2.jpg" class="img-responsive" alt="">
-                            <div class="portfolio-box-caption">
-                                <div class="portfolio-box-caption-content">
-                                    <div class="project-category text-faded">
-                                        Category
-                                    </div>
-                                    <div class="project-name">
-                                        Project Name
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a href="img/portfolio/fullsize/3.jpg" class="portfolio-box">
-                            <img src="img/portfolio/thumbnails/3.jpg" class="img-responsive" alt="">
-                            <div class="portfolio-box-caption">
-                                <div class="portfolio-box-caption-content">
-                                    <div class="project-category text-faded">
-                                        Category
-                                    </div>
-                                    <div class="project-name">
-                                        Project Name
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a href="img/portfolio/fullsize/4.jpg" class="portfolio-box">
-                            <img src="img/portfolio/thumbnails/4.jpg" class="img-responsive" alt="">
-                            <div class="portfolio-box-caption">
-                                <div class="portfolio-box-caption-content">
-                                    <div class="project-category text-faded">
-                                        Category
-                                    </div>
-                                    <div class="project-name">
-                                        Project Name
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a href="img/portfolio/fullsize/5.jpg" class="portfolio-box">
-                            <img src="img/portfolio/thumbnails/5.jpg" class="img-responsive" alt="">
-                            <div class="portfolio-box-caption">
-                                <div class="portfolio-box-caption-content">
-                                    <div class="project-category text-faded">
-                                        Category
-                                    </div>
-                                    <div class="project-name">
-                                        Project Name
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a href="img/portfolio/fullsize/6.jpg" class="portfolio-box">
-                            <img src="img/portfolio/thumbnails/6.jpg" class="img-responsive" alt="">
-                            <div class="portfolio-box-caption">
-                                <div class="portfolio-box-caption-content">
-                                    <div class="project-category text-faded">
-                                        Category
-                                    </div>
-                                    <div class="project-name">
-                                        Project Name
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+
+                    <%}
+                    %>
+
                 </div>
             </div>
         </section>
