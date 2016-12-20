@@ -61,7 +61,13 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+                            <% if(request.getSession().getAttribute("usuario")==null) {%>
+                                <a href="#" data-toggle="modal" data-target="#login-modal">Login</a>                           
+                            <%}else{%>
+                            Bienvenido, <%=request.getSession().getAttribute("usuario")%>
+                            <a <%request.getSession().removeAttribute("usuario");%>> | Salir</a>                           
+
+                            <%}%>
 
                         </li>
                         <li>
@@ -89,14 +95,14 @@
             <div class="modal-dialog">
                 <div class="loginmodal-container">
                     <h1>Login to Your Account</h1><br>
-                    <form>
+                    <form action="LoginServlet" method="POST">
                         <input type="text" name="user" placeholder="Username">
                         <input type="password" name="pass" placeholder="Password">
                         <input type="submit" name="login" class="btn btn-primary btn-xl" value="Login">
                     </form>
 
                     <div class="login-help">
-                        <a href="LoginServlet">Register</a> - <a href="CrearAlumnoServlet">Forgot Password</a>
+                        <a href="RegistrarAlumno.jsp">Register</a> - <a href="CrearAlumnoServlet">Forgot Password</a>
                     </div>
                 </div>
             </div>

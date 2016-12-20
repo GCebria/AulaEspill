@@ -23,16 +23,6 @@ public class LoginServlet extends HttpServlet {
 
     @EJB
     private com.aula.service.AlumnoServiceLocal alumnoService;
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     
     
     
@@ -40,13 +30,14 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         String user = request.getParameter("user");
         String pass = request.getParameter("pass");
-        
+                request.getSession().setAttribute("usuario", user);
+
         Alumno a = alumnoService.loginUser(user, pass);
-        if (a != null ){
-        RequestDispatcher rd = request.getRequestDispatcher("ZonaAlumno.jsp");
+        if (a.getIdUser() != null ){
+        RequestDispatcher rd = request.getRequestDispatcher("/ZonaAlumno.jsp");
         rd.forward(request, response);
         }else{
-            RequestDispatcher rd2 = request.getRequestDispatcher("index.jsp");
+            RequestDispatcher rd2 = request.getRequestDispatcher("/index.jsp");
         rd2.forward(request, response);
         }
     }
